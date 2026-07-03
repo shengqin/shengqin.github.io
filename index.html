@@ -5,19 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shengqin Su, PhD — Computational Biologist</title>
 <meta name="description" content="Shengqin Su, PhD — computational biologist building ML pipelines and predictive models across oncology, hematology, and cardiovascular disease. Stanford University.">
+<link rel="canonical" href="https://shengqin.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shengqin.github.io/">
+<meta property="og:title" content="Shengqin Su, PhD — Computational Biologist">
+<meta property="og:description" content="Computational biologist building ML pipelines and predictive models across oncology, hematology, and cardiovascular disease.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230f5a52'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='40' fill='%23f4f1ea' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('js')</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Newsreader:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&amp;family=Newsreader:ital@0;1&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#f4f1ea;
     --paper-2:#ece7dc;
     --ink:#1a1c1a;
     --ink-soft:#41443f;
-    --ink-faint:#71736c;
+    --ink-faint:#62645d;
+    --ink-mute-dark:#8f918a; /* muted text on dark backgrounds (footer) */
     --line:#d8d2c4;
     --accent:#0f5a52;      /* deep viridian */
-    --accent-2:#b3562d;    /* oxidised copper */
+    --accent-2:#a44f28;    /* oxidised copper */
     --accent-wash:#e2ebe6;
     --shadow:rgba(26,28,26,.10);
     --maxw:1140px;
@@ -117,7 +126,7 @@
   .sec-head h2 em{font-style:italic;color:var(--accent)}
   .sec-head .line{flex:1;height:1px;background:var(--line);transform:translateY(-8px)}
 
-  .reveal{opacity:0;transform:translateY(28px);
+  .js .reveal{opacity:0;transform:translateY(28px);
     transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1;transform:none}
 
@@ -170,7 +179,7 @@
   .pubs{display:grid;gap:0}
   .pub{display:grid;grid-template-columns:auto 1fr auto;gap:26px;align-items:baseline;
     padding:22px 0;border-top:1px solid var(--line);transition:.35s;position:relative}
-  .pub:hover{padding-left:14px}
+  .pub[href]:hover{padding-left:14px}
   .pub::after{content:"";position:absolute;left:0;top:0;bottom:0;width:0;
     background:var(--accent-wash);z-index:-1;transition:width .35s}
   .pub[href]:hover::after{width:100%}
@@ -236,7 +245,7 @@
   .clink .k{font-family:"IBM Plex Mono";font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;
     color:#7fd1c4;margin-bottom:10px}
   .clink .v{font-size:1.05rem;font-family:"Fraunces";word-break:break-word}
-  footer{padding:40px;text-align:center;color:var(--ink-faint);font-family:"IBM Plex Mono";
+  footer{padding:40px;text-align:center;color:var(--ink-mute-dark);font-family:"IBM Plex Mono";
     font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;background:var(--ink)}
   footer span{color:#7fd1c4}
 
@@ -245,8 +254,13 @@
   @keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(15,90,82,.5)}70%{box-shadow:0 0 0 12px rgba(15,90,82,0)}100%{box-shadow:0 0 0 0 rgba(15,90,82,0)}}
   @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
-  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}
-    h1.name .ln span{transform:none}.reveal{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    html{scroll-behavior:auto}
+    h1.name .ln span{transform:none}
+    .js .reveal{opacity:1;transform:none}
+    .eyebrow,.role,.hero-cta,.hero-meta{opacity:1}
+  }
 </style>
 </head>
 <body>
@@ -365,7 +379,7 @@
             <li>Wrote a <b>GATK-based SNP-calling pipeline</b> for PBMC DNA across 49 samples and built a <b>polygenic risk score</b> model for cardiovascular risk.</li>
             <li>Built a <b>circulating tumor DNA (ctDNA) mutation-calling pipeline</b> to detect and track somatic variants from plasma cfDNA, enabling noninvasive tumor genotyping and disease monitoring in Hodgkin lymphoma.</li>
             <li>Developed a pipeline to <b>quantify microbial signal from bulk RNA-seq</b> — filtering host reads and mapping non-human reads to microbial references — to profile tumor-associated microbes and viral transcripts.</li>
-            <li>First-author manuscripts at <b>Nature Communications</b> and <b>Nature Genetics</b> (under review); co-author on <b>Nature</b>.</li>
+            <li>First-author paper in <b>Nature Communications</b> (2025), a first-author manuscript under review at <b>Nature Genetics</b>, and co-author on <b>Nature</b>.</li>
           </ul>
           <div>
             <span class="tag">scRNA-seq</span><span class="tag">SVM</span><span class="tag">NMF</span>
@@ -619,7 +633,7 @@
 </section>
 
 <footer>
-  © <span id="yr"></span> Shengqin Su, PhD · San Francisco Bay Area · <span>Designed with intent</span>
+  © <span id="yr">2026</span> Shengqin Su, PhD · San Francisco Bay Area · <span>Designed with intent</span>
 </footer>
 
 <script>
