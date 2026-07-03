@@ -51,6 +51,7 @@
   a{color:inherit;text-decoration:none}
 
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px;position:relative;z-index:2}
+  @media(max-width:760px){.wrap{padding:0 24px}}
 
   h1,h2,h3,.display{font-family:"Fraunces",Georgia,serif;font-weight:400;letter-spacing:-.01em}
   .mono{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase}
@@ -89,7 +90,7 @@
   .eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);
     box-shadow:0 0 0 0 var(--accent);animation:pulse 2.6s infinite}
   .eyebrow .rule{flex:1;max-width:80px;height:1px;background:var(--accent);opacity:.4}
-  h1.name{font-size:clamp(3.2rem,9vw,7rem);line-height:.96;font-weight:500;margin-bottom:8px}
+  h1.name{font-size:clamp(2.5rem,9vw,7rem);line-height:.96;font-weight:500;margin-bottom:8px}
   h1.name .ln{display:block;overflow:hidden}
   h1.name .ln span{display:block;transform:translateY(105%);
     animation:reveal 1s cubic-bezier(.16,1,.3,1) forwards}
