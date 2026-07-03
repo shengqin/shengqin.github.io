@@ -228,6 +228,7 @@
   .award-row{display:flex;justify-content:space-between;gap:20px;padding:12px 0;
     border-bottom:1px dotted var(--line);font-size:.95rem}
   .award-row .yr{font-family:"IBM Plex Mono";font-size:.7rem;color:var(--accent);white-space:nowrap}
+  @media(max-width:600px){.award-row{flex-direction:column;align-items:flex-start;gap:3px}}
 
   /* ---------- CONTACT ---------- */
   #contact{background:var(--ink);color:var(--paper);border-top:none}
@@ -375,7 +376,7 @@
           <h3>Research Scientist</h3>
           <div class="org">Stanford University <span class="loc">Palo Alto, CA</span></div>
           <ul>
-            <li>Built a Hodgkin lymphoma-specific gene-expression signature matrix from <b>single-cell RNA-seq</b> and engineered an <b>SVM-based deconvolution pipeline</b> to classify 187 bulk-RNA-seq tumors; used <b>NMF</b> to define molecular subtypes and identified a novel subtype with poor progression-free survival, validated across PhenoCycler, Visium, and RNA-microarray data.</li>
+            <li>Built a Hodgkin lymphoma-specific gene-expression signature matrix from <b>single-cell RNA-seq</b> and engineered an <b>SVM-based deconvolution pipeline</b> to classify 187 bulk-RNA-seq tumors; used <b>NMF</b> to define molecular subtypes and identified a novel <b>collagen-enriched subtype</b> with poor progression-free survival, validated across PhenoCycler, Visium, and RNA-microarray data.</li>
             <li>Developed a <b>cell-free RNA-seq assay</b> and analysis pipeline for 102 plasma samples; applied Lasso and logistic regression to identify 11 cfRNAs predictive of coronary artery disease onset.</li>
             <li>Wrote a <b>GATK-based SNP-calling pipeline</b> for PBMC DNA across 49 samples and built a <b>polygenic risk score</b> model for cardiovascular risk.</li>
             <li>Built a <b>circulating tumor DNA (ctDNA) mutation-calling pipeline</b> to detect and track somatic variants from plasma cfDNA, enabling noninvasive tumor genotyping and disease monitoring in Hodgkin lymphoma.</li>
@@ -425,9 +426,9 @@
         <div class="when"><span class="yr">2020</span>2021</div>
         <div class="detail">
           <h3>Personal Trainer</h3>
-          <div class="org">UW–Madison · Recreation &amp; Wellbeing <span class="loc">Madison, WI · Part-time</span></div>
+          <div class="org">University of Wisconsin–Madison <span class="loc">Madison, WI · Part-time</span></div>
           <ul>
-            <li>Designed and delivered <b>personalized fitness programs</b>, conducted fitness assessments, and coached clients on proper exercise technique — alongside my PhD research.</li>
+            <li>Designed and delivered <b>personalized fitness programs</b> at the Recreation &amp; Wellbeing Department — fitness assessments and one-on-one technique coaching, alongside my PhD research.</li>
           </ul>
           <div>
             <span class="tag">Coaching</span><span class="tag">Assessment</span>
@@ -441,7 +442,7 @@
           <h3>Statistical Consultant</h3>
           <div class="org">University of Wisconsin–Madison <span class="loc">Madison, WI · Part-time</span></div>
           <ul>
-            <li>Consulted <b>three clients</b> across chemistry, microbiology, and agriculture labs; designed statistical models for <b>hypothesis testing, ANOVA, and regression</b> in R and SPSS.</li>
+            <li>Advised <b>three research groups</b> across chemistry, microbiology, and agriculture labs; designed statistical models for <b>hypothesis testing, ANOVA, and regression</b> in R and SPSS.</li>
           </ul>
           <div>
             <span class="tag">R</span><span class="tag">SPSS</span><span class="tag">Study design</span>
@@ -634,9 +635,10 @@
 
     <div class="awards reveal">
       <h3>Honors, awards &amp; community</h3>
-      <div class="award-row"><span>Director of Operations, Chinese Bioscience Association (San Francisco)</span><span class="yr">2024—now</span></div>
+      <div class="award-row"><span>Director of Operations, Chinese Bioscience Association SF · organizing the 2026 Annual Conference</span><span class="yr">2024—now</span></div>
+      <div class="award-row"><span>Co-organizer, Ferment Accelerator, Stanford Biotechnology Group · pairing life-science founders with venture investors</span><span class="yr">2025—now</span></div>
       <div class="award-row"><span>Board Member, Career Development Committee, Stanford Biotechnology Group</span><span class="yr">2025—now</span></div>
-      <div class="award-row"><span>Abstract Achievement Award, American Society of Hematology</span><span class="yr">2024—2025</span></div>
+      <div class="award-row"><span>Abstract Achievement Award, American Society of Hematology · ML-based Hodgkin lymphoma ecosystem study</span><span class="yr">2024—2025</span></div>
       <div class="award-row"><span>Conference Travel &amp; Presentation Awards, UW-Madison</span><span class="yr">2018—2021</span></div>
       <div class="award-row"><span>Nanoengineering Growth Excellence Scholarship, UC San Diego</span><span class="yr">2015</span></div>
       <div class="award-row"><span>Outstanding Graduate Award, UST-Beijing</span><span class="yr">2014</span></div>
