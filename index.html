@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shengqin Su, PhD — Computational Biologist</title>
+<meta name="description" content="Shengqin Su, PhD — computational biologist building ML pipelines and predictive models across oncology, hematology, and cardiovascular disease. Stanford University.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Newsreader:ital@0;1&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4f1ea;
+    --paper-2:#ece7dc;
+    --ink:#1a1c1a;
+    --ink-soft:#41443f;
+    --ink-faint:#71736c;
+    --line:#d8d2c4;
+    --accent:#0f5a52;      /* deep viridian */
+    --accent-2:#b3562d;    /* oxidised copper */
+    --accent-wash:#e2ebe6;
+    --shadow:rgba(26,28,26,.10);
+    --maxw:1140px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Newsreader",Georgia,serif;
+    font-size:19px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  body::before{
+    /* subtle paper grain */
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.5;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  }
+  ::selection{background:var(--accent);color:var(--paper)}
+  a{color:inherit;text-decoration:none}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 40px;position:relative;z-index:2}
+
+  h1,h2,h3,.display{font-family:"Fraunces",Georgia,serif;font-weight:400;letter-spacing:-.01em}
+  .mono{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase}
+
+  /* ---------- NAV ---------- */
+  nav{position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:22px 40px;mix-blend-mode:normal;
+    transition:background .4s,box-shadow .4s,padding .4s}
+  nav.scrolled{background:rgba(244,241,234,.86);backdrop-filter:blur(12px);
+    box-shadow:0 1px 0 var(--line);padding:16px 40px}
+  nav .brand{font-family:"Fraunces";font-size:1.05rem;font-weight:500;letter-spacing:-.01em}
+  nav .brand b{color:var(--accent)}
+  nav .links{display:flex;gap:30px}
+  nav .links a{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--ink-soft);position:relative;padding:4px 0}
+  nav .links a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;
+    background:var(--accent);transition:width .3s}
+  nav .links a:hover{color:var(--ink)}
+  nav .links a:hover::after{width:100%}
+  @media(max-width:760px){nav .links{display:none}}
+
+  /* ---------- HERO ---------- */
+  header{position:relative;min-height:100vh;display:flex;align-items:center;
+    padding:120px 0 80px;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;z-index:0;opacity:.9}
+  .hero-bg svg{width:100%;height:100%}
+  .hero-grid{position:absolute;inset:0;z-index:0;
+    background-image:linear-gradient(var(--line) 1px,transparent 1px),
+                     linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:64px 64px;opacity:.35;
+    mask-image:radial-gradient(ellipse 80% 70% at 70% 40%,#000 0%,transparent 75%)}
+  .hero-inner{position:relative;z-index:3;max-width:920px}
+  .eyebrow{display:flex;align-items:center;gap:14px;color:var(--accent);margin-bottom:30px;
+    opacity:0;animation:rise .9s .1s cubic-bezier(.2,.7,.2,1) forwards}
+  .eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);
+    box-shadow:0 0 0 0 var(--accent);animation:pulse 2.6s infinite}
+  .eyebrow .rule{flex:1;max-width:80px;height:1px;background:var(--accent);opacity:.4}
+  h1.name{font-size:clamp(3.2rem,9vw,7rem);line-height:.96;font-weight:500;margin-bottom:8px}
+  h1.name .ln{display:block;overflow:hidden}
+  h1.name .ln span{display:block;transform:translateY(105%);
+    animation:reveal 1s cubic-bezier(.16,1,.3,1) forwards}
+  h1.name .ln:nth-child(1) span{animation-delay:.15s}
+  h1.name .ln:nth-child(2) span{animation-delay:.30s}
+  h1.name em{font-style:italic;color:var(--accent)}
+  .role{font-size:clamp(1.05rem,2.4vw,1.5rem);color:var(--ink-soft);font-style:italic;
+    max-width:680px;margin:30px 0 40px;
+    opacity:0;animation:rise .9s .7s cubic-bezier(.2,.7,.2,1) forwards}
+  .role b{font-style:normal;color:var(--ink);font-weight:500}
+  .hero-cta{display:flex;gap:16px;flex-wrap:wrap;
+    opacity:0;animation:rise .9s .95s cubic-bezier(.2,.7,.2,1) forwards}
+  .btn{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.16em;
+    text-transform:uppercase;padding:15px 26px;border:1px solid var(--ink);
+    display:inline-flex;align-items:center;gap:10px;transition:.3s;background:transparent}
+  .btn.primary{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .btn.primary:hover{background:var(--accent);border-color:var(--accent);transform:translateY(-2px)}
+  .btn.ghost:hover{background:var(--ink);color:var(--paper);transform:translateY(-2px)}
+  .btn .arw{transition:transform .3s}
+  .btn:hover .arw{transform:translate(3px,-3px)}
+
+  .hero-meta{position:absolute;right:40px;bottom:56px;z-index:3;text-align:right;
+    color:var(--ink-faint);line-height:2;
+    opacity:0;animation:rise .9s 1.2s forwards}
+  .hero-meta .mono{color:var(--ink-soft)}
+  @media(max-width:760px){.hero-meta{display:none}}
+
+  /* ---------- SECTION SCAFFOLD ---------- */
+  section{position:relative;padding:110px 0;border-top:1px solid var(--line)}
+  .sec-head{display:flex;align-items:baseline;gap:20px;margin-bottom:64px}
+  .sec-head .num{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--accent);
+    letter-spacing:.1em}
+  .sec-head h2{font-size:clamp(2rem,4.6vw,3.2rem);font-weight:400;flex:0 0 auto}
+  .sec-head h2 em{font-style:italic;color:var(--accent)}
+  .sec-head .line{flex:1;height:1px;background:var(--line);transform:translateY(-8px)}
+
+  .reveal{opacity:0;transform:translateY(28px);
+    transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:70px;align-items:start}
+  @media(max-width:860px){.about-grid{grid-template-columns:1fr;gap:44px}}
+  .lead{font-size:clamp(1.3rem,2.5vw,1.75rem);line-height:1.5;font-family:"Fraunces";
+    font-weight:400;letter-spacing:-.01em;margin-bottom:28px}
+  .lead b{color:var(--accent);font-weight:600}
+  .about p{color:var(--ink-soft);margin-bottom:18px;max-width:60ch}
+  .facts{border-left:2px solid var(--accent);padding-left:26px}
+  .facts .f{padding:14px 0;border-bottom:1px dotted var(--line)}
+  .facts .f:last-child{border-bottom:none}
+  .facts .f .k{font-family:"IBM Plex Mono";font-size:.62rem;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--ink-faint);display:block;margin-bottom:3px}
+  .facts .f .v{font-family:"Fraunces";font-size:1.05rem}
+
+  /* ---------- STATS ---------- */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;margin-top:74px}
+  @media(max-width:760px){.stats{grid-template-columns:repeat(2,1fr);gap:24px}}
+  .stat .big{font-family:"Fraunces";font-size:clamp(2.6rem,5vw,3.6rem);font-weight:500;
+    line-height:1;color:var(--accent);letter-spacing:-.02em}
+  .stat .lbl{font-family:"IBM Plex Mono";font-size:.62rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink-soft);margin-top:10px;line-height:1.5}
+
+  /* ---------- EXPERIENCE ---------- */
+  .exp{position:relative}
+  .job{display:grid;grid-template-columns:190px 1fr;gap:40px;padding:40px 0;
+    border-top:1px solid var(--line);position:relative}
+  .job:first-child{border-top:none}
+  @media(max-width:760px){.job{grid-template-columns:1fr;gap:14px}}
+  .job .when{font-family:"IBM Plex Mono";font-size:.7rem;letter-spacing:.08em;color:var(--ink-faint)}
+  .job .when .yr{display:block;font-size:1.5rem;font-family:"Fraunces";color:var(--ink);
+    letter-spacing:-.01em;margin-bottom:6px}
+  .job h3{font-size:1.5rem;font-weight:500;margin-bottom:4px}
+  .job .org{color:var(--accent);font-style:italic;margin-bottom:20px;font-size:1.05rem}
+  .job .org .loc{color:var(--ink-faint);font-style:normal;font-family:"IBM Plex Mono";
+    font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;margin-left:10px}
+  .job ul{list-style:none}
+  .job li{position:relative;padding-left:26px;margin-bottom:14px;color:var(--ink-soft);
+    font-size:.98rem;max-width:66ch}
+  .job li::before{content:"";position:absolute;left:0;top:.62em;width:11px;height:1px;
+    background:var(--accent-2)}
+  .job li b{color:var(--ink);font-weight:600}
+  .tag{display:inline-block;font-family:"IBM Plex Mono";font-size:.58rem;letter-spacing:.1em;
+    text-transform:uppercase;padding:3px 9px;border:1px solid var(--line);border-radius:20px;
+    color:var(--ink-faint);margin:2px 4px 2px 0}
+
+  /* ---------- PUBLICATIONS ---------- */
+  .pubs{display:grid;gap:0}
+  .pub{display:grid;grid-template-columns:auto 1fr auto;gap:26px;align-items:baseline;
+    padding:22px 0;border-top:1px solid var(--line);transition:.35s;position:relative}
+  .pub:hover{padding-left:14px}
+  .pub::after{content:"";position:absolute;left:0;top:0;bottom:0;width:0;
+    background:var(--accent-wash);z-index:-1;transition:width .35s}
+  .pub[href]:hover::after{width:100%}
+  .pub .yr{font-family:"IBM Plex Mono";font-size:.72rem;color:var(--accent);letter-spacing:.05em}
+  .pub .body .ti{font-family:"Fraunces";font-size:1.12rem;line-height:1.35;margin-bottom:4px}
+  .pub .body .au{color:var(--ink-faint);font-size:.9rem}
+  .pub .body .au b{color:var(--ink);font-weight:600}
+  .pub .venue{font-style:italic;color:var(--accent-2);white-space:nowrap;font-size:.95rem}
+  .pub[href] .venue::after{content:" ↗";font-style:normal;opacity:.45;transition:opacity .3s}
+  .pub[href]:hover .venue::after{opacity:1}
+  .pub[href]:hover .ti{text-decoration:underline;text-decoration-color:var(--accent-2);text-underline-offset:3px}
+  .pub .venue .ur{display:block;font-style:normal;font-family:"IBM Plex Mono";font-size:.56rem;
+    letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-top:2px}
+  @media(max-width:760px){
+    .pub{grid-template-columns:1fr;gap:6px}
+    .pub .venue{white-space:normal}
+  }
+  .pub-note{margin-top:26px;color:var(--ink-faint);font-style:italic;font-size:.9rem}
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:40px}
+  @media(max-width:760px){.skills-grid{grid-template-columns:1fr}}
+  .skill-card{border:1px solid var(--line);padding:34px;position:relative;background:var(--paper-2);
+    transition:.4s}
+  .skill-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 18px 40px -24px var(--shadow)}
+  .skill-card .ic{font-family:"IBM Plex Mono";font-size:.62rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:18px;display:block}
+  .skill-card h3{font-size:1.35rem;font-weight:500;margin-bottom:18px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-family:"IBM Plex Mono";font-size:.66rem;letter-spacing:.04em;padding:6px 12px;
+    background:var(--paper);border:1px solid var(--line);color:var(--ink-soft);border-radius:4px}
+
+  /* ---------- EDUCATION ---------- */
+  .edu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0 60px}
+  @media(max-width:760px){.edu-grid{grid-template-columns:1fr}}
+  .edu{padding:26px 0;border-top:1px solid var(--line)}
+  .edu .deg{font-family:"Fraunces";font-size:1.2rem;margin-bottom:4px}
+  .edu .sch{color:var(--accent);font-style:italic}
+  .edu .yr{font-family:"IBM Plex Mono";font-size:.66rem;color:var(--ink-faint);
+    letter-spacing:.1em;margin-top:4px}
+  .edu .extra{color:var(--ink-faint);font-size:.9rem;margin-top:4px}
+  .awards{margin-top:56px}
+  .awards h3{font-family:"IBM Plex Mono";font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--ink-faint);margin-bottom:22px}
+  .award-row{display:flex;justify-content:space-between;gap:20px;padding:12px 0;
+    border-bottom:1px dotted var(--line);font-size:.95rem}
+  .award-row .yr{font-family:"IBM Plex Mono";font-size:.7rem;color:var(--accent);white-space:nowrap}
+
+  /* ---------- CONTACT ---------- */
+  #contact{background:var(--ink);color:var(--paper);border-top:none}
+  #contact .wrap{padding-top:20px;padding-bottom:20px}
+  #contact .sec-head h2{color:var(--paper)}
+  #contact .sec-head h2 em{color:#7fd1c4}
+  #contact .sec-head .line{background:rgba(244,241,234,.18)}
+  #contact .num{color:#7fd1c4}
+  .contact-big{font-family:"Fraunces";font-size:clamp(2.2rem,6vw,4.4rem);font-weight:400;
+    line-height:1.05;margin-bottom:44px;letter-spacing:-.01em}
+  .contact-big em{font-style:italic;color:#7fd1c4}
+  .contact-links{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  @media(max-width:760px){.contact-links{grid-template-columns:1fr}}
+  .clink{border:1px solid rgba(244,241,234,.2);padding:24px;transition:.35s;display:block}
+  .clink:hover{background:rgba(244,241,234,.06);border-color:#7fd1c4;transform:translateY(-3px)}
+  .clink .k{font-family:"IBM Plex Mono";font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;
+    color:#7fd1c4;margin-bottom:10px}
+  .clink .v{font-size:1.05rem;font-family:"Fraunces";word-break:break-word}
+  footer{padding:40px;text-align:center;color:var(--ink-faint);font-family:"IBM Plex Mono";
+    font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;background:var(--ink)}
+  footer span{color:#7fd1c4}
+
+  /* ---------- ANIMATIONS ---------- */
+  @keyframes reveal{to{transform:translateY(0)}}
+  @keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(15,90,82,.5)}70%{box-shadow:0 0 0 12px rgba(15,90,82,0)}100%{box-shadow:0 0 0 0 rgba(15,90,82,0)}}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-18px)}}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}
+    h1.name .ln span{transform:none}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a class="brand" href="#top">Shengqin&nbsp;<b>Su</b>, PhD</a>
+  <div class="links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#research">Research</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="hero-grid"></div>
+  <div class="hero-bg">
+    <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g stroke="#0f5a52" stroke-width="1" fill="none" opacity="0.5" style="transform-origin:center">
+        <!-- DNA-ish double helix strand, decorative -->
+        <g style="animation:float 9s ease-in-out infinite">
+          <path d="M950 60 Q1050 200 950 340 Q850 480 950 620 Q1050 760 950 900" />
+          <path d="M1080 60 Q980 200 1080 340 Q1180 480 1080 620 Q980 760 1080 900" />
+          <line x1="965" y1="120" x2="1065" y2="120"/><line x1="1010" y1="200" x2="1010" y2="200"/>
+          <line x1="978" y1="180" x2="1052" y2="180"/><line x1="1000" y1="260" x2="1040" y2="260"/>
+          <line x1="965" y1="300" x2="1065" y2="300"/><line x1="978" y1="420" x2="1052" y2="420"/>
+          <line x1="965" y1="480" x2="1065" y2="480"/><line x1="978" y1="540" x2="1052" y2="540"/>
+          <line x1="965" y1="660" x2="1065" y2="660"/><line x1="978" y1="720" x2="1052" y2="720"/>
+        </g>
+        <circle cx="965" cy="120" r="4" fill="#b3562d"/><circle cx="1065" cy="120" r="4" fill="#0f5a52"/>
+        <circle cx="965" cy="300" r="4" fill="#0f5a52"/><circle cx="1065" cy="300" r="4" fill="#b3562d"/>
+        <circle cx="965" cy="480" r="4" fill="#b3562d"/><circle cx="1065" cy="480" r="4" fill="#0f5a52"/>
+        <circle cx="965" cy="660" r="4" fill="#0f5a52"/><circle cx="1065" cy="660" r="4" fill="#b3562d"/>
+      </g>
+    </svg>
+  </div>
+  <div class="wrap hero-inner">
+    <div class="eyebrow">
+      <span class="dot"></span>
+      <span class="mono">Stanford University · Computational Biology × ML</span>
+      <span class="rule"></span>
+    </div>
+    <h1 class="name">
+      <span class="ln"><span>Shengqin&nbsp;Su,</span></span>
+      <span class="ln"><span><em>PhD</em></span></span>
+    </h1>
+    <p class="role">
+      Computational biologist building <b>ML pipelines and predictive models</b> that turn
+      single-cell, spatial, and cell-free genomics into discovery — across oncology,
+      hematology, and cardiovascular disease. Excited to build <b>agentic AI tools</b>
+      that accelerate science.
+    </p>
+    <div class="hero-cta">
+      <a class="btn primary" href="#contact">Get in touch <span class="arw">↗</span></a>
+      <a class="btn ghost" href="#research">Selected research <span class="arw">↗</span></a>
+    </div>
+  </div>
+  <div class="hero-meta">
+    <div class="mono">San Francisco Bay Area</div>
+    <div class="mono">Python · ML · Genomics</div>
+    <div class="mono">414 citations · h-index 7</div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">01</span>
+      <h2>The <em>through-line</em></h2>
+      <span class="line"></span>
+    </div>
+    <div class="about-grid about">
+      <div class="reveal">
+        <p class="lead">I engineer the <b>pipeline and the model</b> — turning raw single-cell, spatial, and cell-free sequence into biological signal that biologists and clinicians actually use.</p>
+        <p>Over six-plus years across academia and biotech, I've built and shipped bioinformatics pipelines and predictive models: single-cell RNA-seq deconvolution, GATK-based variant calling, ctDNA mutation tracking, and polygenic risk scoring — in Python and R, containerized and reproducible. My work spans molecular subtyping of Hodgkin Lymphoma, liquid-biopsy assays for cardiovascular risk, and preclinical target discovery in melanoma.</p>
+        <p>Industry drug-discovery experience rounds it out: preclinical modeling, clinical PK/PD assays, and companion diagnostics across ten-plus programs. I'm now focused on <b>building agentic AI tools that accelerate scientific discovery</b> — combining rigorous ML-for-biology with production-quality software engineering.</p>
+      </div>
+      <div class="facts reveal">
+        <div class="f"><span class="k">Current role</span><span class="v">Research Scientist, Stanford</span></div>
+        <div class="f"><span class="k">Focus</span><span class="v">ML for biology · Genomics · Agentic AI</span></div>
+        <div class="f"><span class="k">Stack</span><span class="v">Python · R · Linux · Docker · Git</span></div>
+        <div class="f"><span class="k">Google Scholar</span><span class="v">414 citations · h-index 7</span></div>
+        <div class="f"><span class="k">Based in</span><span class="v">San Francisco Bay Area, CA</span></div>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div class="stat reveal"><div class="big" data-count="414">414</div><div class="lbl">Citations<br>(Google Scholar)</div></div>
+      <div class="stat reveal"><div class="big" data-count="7">7</div><div class="lbl">h-index<br>i10-index 6</div></div>
+      <div class="stat reveal"><div class="big" data-count="5">5</div><div class="lbl">Production pipelines<br>built &amp; shipped</div></div>
+      <div class="stat reveal"><div class="big">6+</div><div class="lbl">Years in<br>ML for biology</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">02</span>
+      <h2>Professional <em>experience</em></h2>
+      <span class="line"></span>
+    </div>
+    <div class="exp">
+
+      <div class="job reveal">
+        <div class="when"><span class="yr">2024</span>present</div>
+        <div class="detail">
+          <h3>Research Scientist</h3>
+          <div class="org">Stanford University <span class="loc">Palo Alto, CA</span></div>
+          <ul>
+            <li>Built a Hodgkin lymphoma-specific gene-expression signature matrix from <b>single-cell RNA-seq</b> and engineered an <b>SVM-based deconvolution pipeline</b> to classify 187 bulk-RNA-seq tumors; used <b>NMF</b> to define molecular subtypes and identified a novel subtype with poor progression-free survival, validated across PhenoCycler, Visium, and RNA-microarray data.</li>
+            <li>Developed a <b>cell-free RNA-seq assay</b> and analysis pipeline for 102 plasma samples; applied Lasso and logistic regression to identify 11 cfRNAs predictive of coronary artery disease onset.</li>
+            <li>Wrote a <b>GATK-based SNP-calling pipeline</b> for PBMC DNA across 49 samples and built a <b>polygenic risk score</b> model for cardiovascular risk.</li>
+            <li>Built a <b>circulating tumor DNA (ctDNA) mutation-calling pipeline</b> to detect and track somatic variants from plasma cfDNA, enabling noninvasive tumor genotyping and disease monitoring in Hodgkin lymphoma.</li>
+            <li>Developed a pipeline to <b>quantify microbial signal from bulk RNA-seq</b> — filtering host reads and mapping non-human reads to microbial references — to profile tumor-associated microbes and viral transcripts.</li>
+            <li>First-author manuscripts at <b>Nature Communications</b> and <b>Nature Genetics</b> (under review); co-author on <b>Nature</b>.</li>
+          </ul>
+          <div>
+            <span class="tag">scRNA-seq</span><span class="tag">SVM</span><span class="tag">NMF</span>
+            <span class="tag">ctDNA</span><span class="tag">GATK</span><span class="tag">PRS</span>
+            <span class="tag">spatial</span><span class="tag">Python / R</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="job reveal">
+        <div class="when"><span class="yr">2021</span>2022</div>
+        <div class="detail">
+          <h3>Project Manager</h3>
+          <div class="org">Hengrui Pharmaceutical <span class="loc">Shanghai, CN</span></div>
+          <ul>
+            <li>Led <b>PK/PD assay development</b> for Phase I candidates: engineered IL-2 (flow cytometry), TROP-2 ADC (IHC), PDE3/4 inhibitor (FEV1), Factor-XI mAbs (aPTT).</li>
+            <li>Directed <b>companion-diagnostic (CDx) development</b> for Phase III programs with Foundation Medicine, ThermoFisher / GenePlus, and Agilent / AmoyDx — translating biomarker biology into assay and regulatory requirements.</li>
+            <li>Elected departmental representative; presented the Monthly R&amp;D Highlight to the <b>Global R&amp;D Head</b> (twice).</li>
+          </ul>
+          <div>
+            <span class="tag">Companion Dx</span><span class="tag">PK/PD</span><span class="tag">Phase I–III</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="job reveal">
+        <div class="when"><span class="yr">2017</span>2021</div>
+        <div class="detail">
+          <h3>Research Assistant</h3>
+          <div class="org">University of Wisconsin–Madison <span class="loc">Madison, WI</span></div>
+          <ul>
+            <li>Discovered a <b>PLK1 + NOTCH combination therapy</b> for melanoma using immunofluorescence and TCGA analysis; published as a <b>cover paper</b> in Molecular Cancer Therapeutics.</li>
+            <li>Implemented a <b>bootstrap resampling method</b> to estimate confidence intervals and p-values for the Chou-Talalay Combination Index.</li>
+          </ul>
+          <div>
+            <span class="tag">TCGA</span><span class="tag">bootstrap</span><span class="tag">target discovery</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="job reveal">
+        <div class="when"><span class="yr">2015</span>2017</div>
+        <div class="detail">
+          <h3>Research Associate</h3>
+          <div class="org">Singlera Genomics, Inc. <span class="loc">La Jolla, CA</span></div>
+          <ul>
+            <li>Developed an <b>NGS assay</b> detecting mutation and aberrant methylation in colorectal cancer; optimized stool collection, DNA extraction, and library prep.</li>
+            <li>Product named an <b>AACC Disruptive Technology Award finalist</b> (2019).</li>
+          </ul>
+          <div>
+            <span class="tag">NGS</span><span class="tag">Methylation</span><span class="tag">Early detection</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH / PUBLICATIONS -->
+<section id="research">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">03</span>
+      <h2>Selected <em>publications</em></h2>
+      <span class="line"></span>
+    </div>
+    <div class="pubs">
+
+      <div class="pub reveal">
+        <span class="yr">2026</span>
+        <span class="body">
+          <span class="ti">Multimodal discovery of distinct tumor ecosystems for classic Hodgkin lymphoma</span>
+          <span class="au"><b>Su S.</b>, Subramanian A., … Binkley M. &nbsp;·&nbsp; first author</span>
+        </span>
+        <span class="venue">Nature Genetics<span class="ur">Under review</span></span>
+      </div>
+
+      <div class="pub reveal">
+        <span class="yr">2026</span>
+        <span class="body">
+          <span class="ti">Cell-free gene expression profiling to estimate inherited risk of cardiovascular disease</span>
+          <span class="au"><b>Su S.</b>, Subramanian A., … Binkley M. &nbsp;·&nbsp; first author</span>
+        </span>
+        <span class="venue">iScience<span class="ur">Under review</span></span>
+      </div>
+
+      <a class="pub reveal" href="https://www.nature.com/articles/s41467-025-63339-9" target="_blank" rel="noopener">
+        <span class="yr">2025</span>
+        <span class="body">
+          <span class="ti">Distinct cell-state ecosystems for nodular lymphocyte-predominant Hodgkin lymphoma</span>
+          <span class="au">Subramanian A.*, <b>Su S.*</b>, … Binkley M. &nbsp;·&nbsp; *equal contribution</span>
+        </span>
+        <span class="venue">Nature Communications</span>
+      </a>
+
+      <a class="pub reveal" href="https://doi.org/10.1016/j.jid.2025.07.009" target="_blank" rel="noopener">
+        <span class="yr">2025</span>
+        <span class="body">
+          <span class="ti">A melanoma-specific gene network analysis identifies MZB1 as a potential tumor promoter</span>
+          <span class="au">Chhabra G., <b>Su S.</b>, … Ahmad N.</span>
+        </span>
+        <span class="venue">J. Investigative Dermatology</span>
+      </a>
+
+      <a class="pub reveal" href="https://www.nature.com/articles/s41698-023-00493-7" target="_blank" rel="noopener">
+        <span class="yr">2024</span>
+        <span class="body">
+          <span class="ti">Role of PLK1/NUMB/NOTCH in epithelial–mesenchymal transition in human melanoma</span>
+          <span class="au">Chhabra G., … <b>Su S.</b>, Ahmad N.</span>
+        </span>
+        <span class="venue">npj Precision Oncology</span>
+      </a>
+
+      <a class="pub reveal" href="https://www.nature.com/articles/s41586-023-06903-x" target="_blank" rel="noopener">
+        <span class="yr">2024</span>
+        <span class="body">
+          <span class="ti">Distinct Hodgkin lymphoma subtypes defined by noninvasive genomic profiling</span>
+          <span class="au">Alig S.K., … <b>Su S.</b>, … Diehn M., Alizadeh A.</span>
+        </span>
+        <span class="venue">Nature</span>
+      </a>
+
+      <a class="pub reveal" href="https://link.springer.com/article/10.1007/s00439-023-02586-6" target="_blank" rel="noopener">
+        <span class="yr">2023</span>
+        <span class="body">
+          <span class="ti">Tissue specificity and prognostic impact of cis-regulatory cancer risk variants</span>
+          <span class="au">Subramanian A., <b>Su S.</b>, Moding E.J., Binkley M.S.</span>
+        </span>
+        <span class="venue">Human Genetics</span>
+      </a>
+
+      <a class="pub reveal" href="https://aacrjournals.org/mct/article/20/1/161/92984/PLK1-and-NOTCH-Positively-Correlate-in-Melanoma" target="_blank" rel="noopener">
+        <span class="yr">2021</span>
+        <span class="body">
+          <span class="ti">PLK1 &amp; NOTCH correlate in melanoma; combined inhibition drives synergistic pathway modulation</span>
+          <span class="au"><b>Su S.</b>, Chhabra G., … Ahmad N. &nbsp;·&nbsp; Cover paper</span>
+        </span>
+        <span class="venue">Mol. Cancer Therapeutics</span>
+      </a>
+
+    </div>
+    <p class="pub-note reveal">414 citations · h-index 7 · i10-index 6. Full publication list on <a href="https://scholar.google.com/citations?user=HIOLbz0AAAAJ" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">Google Scholar</a> and <a href="https://www.linkedin.com/in/shengqinsu/" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline">LinkedIn</a>.</p>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">04</span>
+      <h2>Technical <em>toolkit</em></h2>
+      <span class="line"></span>
+    </div>
+    <div class="skills-grid">
+
+      <div class="skill-card reveal">
+        <span class="ic">/ Programming &amp; software engineering</span>
+        <h3>Building the tools</h3>
+        <div class="chips">
+          <span class="chip">Python</span><span class="chip">pandas</span><span class="chip">NumPy</span>
+          <span class="chip">scikit-learn</span><span class="chip">R</span><span class="chip">Seurat</span>
+          <span class="chip">Azimuth</span><span class="chip">DESeq2</span><span class="chip">GSVA / GSEA</span>
+          <span class="chip">Bash / Linux</span><span class="chip">Docker</span><span class="chip">Singularity</span>
+          <span class="chip">Git</span><span class="chip">reproducible pipelines</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <span class="ic">/ Machine learning &amp; statistics</span>
+        <h3>Modeling</h3>
+        <div class="chips">
+          <span class="chip">SVM classification</span><span class="chip">NMF</span>
+          <span class="chip">Lasso / logistic regression</span><span class="chip">survival analysis</span>
+          <span class="chip">bootstrap resampling</span><span class="chip">polygenic risk scoring</span>
+          <span class="chip">M.S. Applied Statistics</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <span class="ic">/ Genomics &amp; bioinformatics</span>
+        <h3>The data</h3>
+        <div class="chips">
+          <span class="chip">bulk &amp; single-cell RNA-seq</span><span class="chip">spatial (Visium, PhenoCycler)</span>
+          <span class="chip">cell-free DNA / RNA</span><span class="chip">GATK variant / SNP calling</span>
+          <span class="chip">CIBERSORTx</span><span class="chip">EcoTyper</span>
+          <span class="chip">TCGA</span><span class="chip">GTEx</span><span class="chip">GWAS</span>
+          <span class="chip">NCBI</span><span class="chip">Ensembl</span>
+        </div>
+      </div>
+
+      <div class="skill-card reveal">
+        <span class="ic">/ Wet lab &amp; assay development</span>
+        <h3>The bench</h3>
+        <div class="chips">
+          <span class="chip">NGS library prep</span><span class="chip">circulating RNA / DNA</span>
+          <span class="chip">DNA / RNA / protein extraction</span><span class="chip">clinical PK/PD assays</span>
+          <span class="chip">companion diagnostics</span><span class="chip">IHC</span>
+          <span class="chip">flow cytometry</span><span class="chip">xenograft</span>
+          <span class="chip">viability / apoptosis</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">05</span>
+      <h2>Education &amp; <em>honors</em></h2>
+      <span class="line"></span>
+    </div>
+    <div class="edu-grid">
+      <div class="edu reveal"><div class="deg">Postdoctoral Scholar, Radiation Oncology</div><div class="sch">Stanford University</div><div class="extra">Stanford Ignite Certificate, Graduate School of Business</div><div class="yr">2022 — 2024</div></div>
+      <div class="edu reveal"><div class="deg">PhD, Biomedical Sciences · MS, Applied Statistics</div><div class="sch">University of Wisconsin–Madison</div><div class="yr">2017 — 2021</div></div>
+      <div class="edu reveal"><div class="deg">MS, Nanoengineering</div><div class="sch">University of California, San Diego</div><div class="yr">2014 — 2015</div></div>
+      <div class="edu reveal"><div class="deg">BS, Biotechnology</div><div class="sch">Univ. of Science &amp; Technology, Beijing</div><div class="yr">2010 — 2014</div></div>
+    </div>
+
+    <div class="awards reveal">
+      <h3>Honors, awards &amp; community</h3>
+      <div class="award-row"><span>Director of Operations, Chinese Bioscience Association (San Francisco)</span><span class="yr">2024—now</span></div>
+      <div class="award-row"><span>Board Member, Career Development Committee, Stanford Biotechnology Group</span><span class="yr">2025—now</span></div>
+      <div class="award-row"><span>Abstract Achievement Award, American Society of Hematology</span><span class="yr">2024—2025</span></div>
+      <div class="award-row"><span>Conference Travel &amp; Presentation Awards, UW-Madison</span><span class="yr">2018—2021</span></div>
+      <div class="award-row"><span>Nanoengineering Growth Excellence Scholarship, UC San Diego</span><span class="yr">2015</span></div>
+      <div class="award-row"><span>Outstanding Graduate Award, UST-Beijing</span><span class="yr">2014</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="num">06</span>
+      <h2>Let's <em>talk</em></h2>
+      <span class="line"></span>
+    </div>
+    <p class="contact-big reveal">Looking for someone who can <em>own the pipeline and the model</em> — and build AI that accelerates science? Let's connect.</p>
+    <div class="contact-links">
+      <a class="clink reveal" href="mailto:ssu42@stanford.edu"><div class="k">Email</div><div class="v">ssu42@stanford.edu</div></a>
+      <a class="clink reveal" href="tel:+16506139509"><div class="k">Phone</div><div class="v">+1 (650) 613-9509</div></a>
+      <a class="clink reveal" href="https://www.linkedin.com/in/shengqinsu/" target="_blank" rel="noopener"><div class="k">LinkedIn</div><div class="v">/in/shengqinsu ↗</div></a>
+      <a class="clink reveal" href="https://scholar.google.com/citations?user=HIOLbz0AAAAJ" target="_blank" rel="noopener"><div class="k">Scholar</div><div class="v">Google Scholar ↗</div></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © <span id="yr"></span> Shengqin Su, PhD · San Francisco Bay Area · <span>Designed with intent</span>
+</footer>
+
+<script>
+  // nav shadow on scroll
+  const nav=document.getElementById('nav');
+  addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
+
+  // reveal on scroll
+  const io=new IntersectionObserver((es)=>{
+    es.forEach((e,i)=>{if(e.isIntersecting){
+      e.target.style.transitionDelay=(e.target.dataset.d||( (i%4)*70 ))+'ms';
+      e.target.classList.add('in');io.unobserve(e.target);}});
+  },{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // count-up stats
+  const cio=new IntersectionObserver((es)=>{
+    es.forEach(e=>{if(e.isIntersecting){
+      const el=e.target,target=+el.dataset.count;let n=0;
+      const step=Math.max(1,Math.round(target/34));
+      const t=setInterval(()=>{n+=step;if(n>=target){n=target;clearInterval(t)}el.textContent=n;},22);
+      cio.unobserve(el);}});
+  },{threshold:.6});
+  document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+  document.getElementById('yr').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
